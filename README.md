@@ -1,5 +1,5 @@
 
-# The project is from Kaggle and some of the text (Goal section and some part in competition discription were directly copied)- a machine learning project employing classification model.
+# The project is from Kaggle and some of the texts (in particular the goal section and some part in competition discription) were directly copied from the site (Kaggle). This is a machine learning project employing classification model.
 
 
 # GOAL
