@@ -50,12 +50,10 @@ print('Accuracy is:')
 accuracy = accuracy_score(y_test,y_prediction)*100
 print(round(accuracy))
 
-
 # Apply the trained model to a real life test model
 #import
 
 Titanic_test_db = pd.read_csv('C:/Users/Seun/Desktop/Py_ML_Data/Titanic/test.csv')
-
 
 features = ['Pclass','Fare', 'Parch']
 test_features = Titanic_test_db[features]
