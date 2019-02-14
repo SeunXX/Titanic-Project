@@ -35,17 +35,15 @@ Titanic_gini.fit(X_train, y_train)
 y_prediction = Titanic_gini.predict(X_test)
 y_prediction 
 
-y_predictionDF = pd.DataFrame(data = y_prediction, columns = ['survived'])
-y_predictionDF
+X_test.columns
 
-RightDF = X_test
-RightDF
+X_df = X_test['PassengerId']
 
 y_DF = RightDF.merge(y_predictionDF, left_on = 'PassengerId' , right_on = 'survived')
 
-selection = ['PassengerId', 'survived']
-y_DF = y_DF[selection]
-y_DF
+y_DF = pd.DataFrame({'PassengerId':X_df, 'Survival':y_prediction})
+y_DF = y_DF.reset_index()
+y_DF.drop('index', axis =1)
 
 #Accuracy of our model: the ratio of the predicted outcome to all the predicted data point
 print('Accuracy is:')
@@ -53,7 +51,7 @@ accuracy = accuracy_score(y_test,y_prediction)*100
 print(round(accuracy))
 
 
-# Apply the trained model to a reallife test model
+# Apply the trained model to a real life test model
 #import
 
 Titanic_test_db = pd.read_csv('C:/Users/Seun/Desktop/Py_ML_Data/Titanic/test.csv')
@@ -64,16 +62,24 @@ test_features = Titanic_test_db[features]
 
 #Defining predictor variable on the test data
 X_Titanic_test_db = test_features
+X_testDF = X_Titanic_test_db['PassengerId']
 print(X_Titanic_test_db)
 
 X_Titanic_test_db.head()
 
-#working on the data to remove none or missing data
-X_Titanic_test = X_Titanic_test_db.fillna(0)
+X_testDF1 = X_testDF[1:]
 
-pd.isna(X_Titanic_test)
+#working on the data to remove none or missing data
+X_Titanic_test_db = X_Titanic_test_db.replace('na', '')
 
 #Predicting the outcome variable using real life test data
-y_Titanic_test_prediction = Titanic_gini.predict(X_Titanic_test)
+y_Titanic_test_prediction = Titanic_gini.predict(X_Titanic_test_db)
 y_Titanic_test_prediction
 
+# Put result in dataframe- 'columns: PassengerId and Survived
+y_Titanic_test_predictionDF = pd.DataFrame({'PassengerId':X_testDF1, 'Survival':y_Titanic_test_prediction})
+y_Titanic_test_predictionDF = y_Titanic_test_predictionDF.reset_index()
+y_Titanic_test_predictionDF.drop('index', axis =1)
+
+# View in Glueviz 
+app = qglue(data1=y_Titanic_test_predictionDF)
