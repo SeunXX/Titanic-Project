@@ -55,20 +55,18 @@ print(round(accuracy))
 
 Titanic_test_db = pd.read_csv('C:/Users/Seun/Desktop/Py_ML_Data/Titanic/test.csv')
 
-features = ['Pclass','Fare', 'Parch']
-test_features = Titanic_test_db[features]
+features = ['PassengerId', 'Pclass','Fare', 'Parch']
 
 #Defining predictor variable on the test data
-X_Titanic_test_db = test_features
-X_testDF = X_Titanic_test_db['PassengerId']
+X_Titanic_test_db = Titanic_test_db[features]
+X_testDF = X_Titanic_test_db.loc[:,'PassengerId']
 print(X_Titanic_test_db)
 
 X_Titanic_test_db.head()
 
-X_testDF1 = X_testDF[1:]
-
 #working on the data to remove none or missing data
-X_Titanic_test_db = X_Titanic_test_db.replace('na', '')
+X_Titanic_test_db = X_Titanic_test_db.replace(np.nan, '', regex=True)
+X_Titanic_test_db = X_Titanic_test_db.replace('', 0.0)
 
 #Predicting the outcome variable using real life test data
 y_Titanic_test_prediction = Titanic_gini.predict(X_Titanic_test_db)
@@ -76,8 +74,7 @@ y_Titanic_test_prediction
 
 # Put result in dataframe- 'columns: PassengerId and Survived
 y_Titanic_test_predictionDF = pd.DataFrame({'PassengerId':X_testDF1, 'Survival':y_Titanic_test_prediction})
-y_Titanic_test_predictionDF = y_Titanic_test_predictionDF.reset_index()
-y_Titanic_test_predictionDF.drop('index', axis =1)
+y_Titanic_test_predictionDF 
 
 # View in Glueviz 
 app = qglue(data1=y_Titanic_test_predictionDF)
