@@ -10,6 +10,9 @@ For each PassengerId in the test set, you must predict a 0 or 1 value for the Su
 COMPETITION DESCRIPTION
 The sinking of the RMS Titanic is one of the most infamous shipwrecks in history.  On April 15, 1912, during her maiden voyage, the Titanic sank after colliding with an iceberg, killing 1502 out of 2224 passengers and crew. This sensational tragedy shocked the international community and led to better safety regulations for ships.
 
+from IPython.display import YouTubeVideo
+YouTubeVideo('https://youtu.be/9xoqXVjBEF8')
+
 https://youtu.be/9xoqXVjBEF8
 
 It was later observed that those that survived the shipwreck attributed their survival to several elements: mother nature luck, sex of the survivor, age- children were given priviledge, and the cabin class you booked during the voyage. 
